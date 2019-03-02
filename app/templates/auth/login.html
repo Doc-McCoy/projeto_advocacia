@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div id="message">
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <h3>Login</h3>
+    <form action="login" method="post">
+        <input type='text' name='user' id='user' placeholder='user'/>
+        <input type='password' name='password' id='password' placeholder='password'/>
+        <input type='submit' name='submit'/>
+    </form>
+
+<script>
+
+    // Sumir com a mensagem após 5 segundos
+    setTimeout(function() {
+        message = document.getElementById("message");
+        message.style.display = 'none';
+    }, 5000);
+
+</script>
+</body>
+</html>
