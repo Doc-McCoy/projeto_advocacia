@@ -18,8 +18,8 @@ def load_user(login):
 def unauthorized_handler():
     flash("aqui não, negão!")
     return redirect(url_for('login'))
-# ================================================
 
+# ================================================
 def checkLoginValid(user, password):
     if user == 'admin' and password == 'root':
         return True
@@ -27,12 +27,12 @@ def checkLoginValid(user, password):
         return False
 
 # ================================================
-@app.route('/')
 @app.route('/home')
 @login_required
 def home():
     return render_template('home.html')
 
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
@@ -43,14 +43,16 @@ def login():
         password = request.form['password']
 
         if not (user and password):
+            flash("Digita a porra do user e a senha né caralho!")
             return redirect(url_for('login'))
         
         if checkLoginValid(user, password):
             userToLoad = User(user)
             login_user(userToLoad)
             return redirect(url_for('home'))
-
-    return redirect(url_for('login'))
+        else:
+            flash("Usuário ou senha incorreto")
+            return redirect(url_for('login'))
 
 @app.route('/logout')
 @login_required
@@ -58,6 +60,7 @@ def logout():
     logout_user()
     flash("Logout efetuado com sucesso!")
     return redirect(url_for('login'))
+
 # ================================================
 if __name__ == '__main__':
     app.run(debug=True)
