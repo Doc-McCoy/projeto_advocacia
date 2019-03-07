@@ -5,7 +5,7 @@ app             = Flask(__name__)
 app.secret_key  = "wtfisthis"
 login_manager   = LoginManager(app)
 
-# ================================================
+# =========================================================
 class User(UserMixin):
     def __init__(self, id):
         self.id = login
@@ -19,14 +19,14 @@ def unauthorized_handler():
     flash("aqui não, negão!")
     return redirect(url_for('login'))
 
-# ================================================
+# =========================================================
 def checkLoginValid(user, password):
     if user == 'admin' and password == 'root':
         return True
     else:
         return False
 
-# ================================================
+# =========================================================
 @app.route('/home')
 @login_required
 def home():
@@ -61,6 +61,6 @@ def logout():
     flash("Logout efetuado com sucesso!")
     return redirect(url_for('login'))
 
-# ================================================
+# =========================================================
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
