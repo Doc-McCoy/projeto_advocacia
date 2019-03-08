@@ -2,8 +2,9 @@ from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required, UserMixin
 
 app             = Flask(__name__)
-app.secret_key  = "wtfisthis"
 login_manager   = LoginManager(app)
+
+app.config.from_pyfile('config.py')
 
 # =========================================================
 class User(UserMixin):
@@ -36,7 +37,7 @@ def home():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        return render_template('auth/login.html')
+        return render_template('login.html')
 
     elif request.method == 'POST':
         user = request.form['user']

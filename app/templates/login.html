@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block style %}
+    <style type="text/css">
+        body {
+            background-color: dimgray;
+        }
+        .column {
+            max-width: 450px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui header">
+            Login
+        </h2>
+        <form class="ui large form">
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" name="email" placeholder="E-mail address">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="ui fluid large teal submit button">Login</div>
+            </div>
+
+            <div class="ui error message"></div>
+
+        </form>
+
+        <div class="ui message">
+            É novo? Pau no teu cu!
+        </div>
+    </div>
+</div>
+<script>
+
+    // Sumir com a mensagem após 5 segundos
+    setTimeout(function() {
+        message = document.getElementById("message");
+        message.style.display = 'none';
+    }, 5000);
+
+</script>
+{% endblock %}
