@@ -3,7 +3,8 @@
 {% block style %}
     <style type="text/css">
         body {
-            background-color: dimgray;
+            background-color : darkslategrey;
+            padding-top: 50px;
         }
         .column {
             max-width: 450px;
@@ -17,7 +18,7 @@
         <h2 class="ui header">
             Login
         </h2>
-        <form class="ui large form">
+        <form action="/login" method="POST" class="ui large form">
             <div class="ui stacked segment">
                 <div class="field">
                     <div class="ui left icon input">
@@ -31,11 +32,9 @@
                         <input type="password" name="password" placeholder="Password">
                     </div>
                 </div>
-                <div class="ui fluid large teal submit button">Login</div>
+                <input type="submit" value="Logar" class="ui fluid large teal submit button">
             </div>
-
             <div class="ui error message"></div>
-
         </form>
 
         <div class="ui message">

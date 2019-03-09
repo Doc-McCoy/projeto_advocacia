@@ -1,19 +1,24 @@
 from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required, UserMixin
+from shared.db import db
+from models.user import User
 
-app             = Flask(__name__)
-login_manager   = LoginManager(app)
-
+app = Flask(__name__)
+login_manager = LoginManager(app)
 app.config.from_pyfile('config.py')
 
+with app.app_context():
+    db.init_app(app)
+    # db.create_all()
+
 # =========================================================
-class User(UserMixin):
+class SessionUser(UserMixin):
     def __init__(self, id):
         self.id = login
 
 @login_manager.user_loader
 def load_user(login):
-    return User(login)
+    return SessionUser(login)
 
 @login_manager.unauthorized_handler
 def unauthorized_handler():
@@ -40,7 +45,7 @@ def login():
         return render_template('login.html')
 
     elif request.method == 'POST':
-        user = request.form['user']
+        user = request.form['email']
         password = request.form['password']
 
         if not (user and password):
@@ -48,7 +53,7 @@ def login():
             return redirect(url_for('login'))
         
         if checkLoginValid(user, password):
-            userToLoad = User(user)
+            userToLoad = SessionUser(user)
             login_user(userToLoad)
             return redirect(url_for('home'))
         else:
