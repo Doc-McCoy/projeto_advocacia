@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+
+{% block style %}
+    <style type="text/css">
+        body {
+            background-color : darkslategrey;
+        }
+    </style>
+{% endblock %}
+
+{% block menu %}
+{% include "menu.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="one left aligned column wide">
+    <form action="" class="ui form">
+        <div class="ui inverted segment">
+
+            <h2 class="ui dividing header">Cadastro de Clientes</h2>
+
+            <div class="field">
+                <label>Nome</label>
+                <div class="ui corner labeled inverted input">
+                    <input type="text" name="nome" id="nome">
+                    <div class="ui corner label">
+                        <i class="asterisk icon"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label>RG</label>
+                    <input type="text" name="rg" id="rg">
+                </div>
+                <div class="field">
+                    <label>CPF</label>
+                    <div class="ui corner labeled inverted input">
+                        <input type="text" name="cpf" id="cpf">
+                        <div class="ui corner label">
+                            <i class="asterisk icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="three fields">
+                <div class="field">
+                    <label>Data de nascimento</label>
+                    <input type="text" name="nascimento" id="nascimento">
+                </div>
+                <div class="field">
+                    <label>Estado civil</label>
+                    <select class="ui dropdown">
+                        <option value="">Selecione</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Profissão</label>
+                    <input type="text" name="profissao" id="profissao">
+                </div>
+            </div>
+
+            <div class="three fields">
+                <div class="field">
+                    <label>Telefone</label>
+                    <input type="text" name="fone1" id="fone1">
+                </div>
+                <div class="field">
+                    <label>Telefone</label>
+                    <input type="text" name="fone2" id="fone2">
+                </div>
+                <div class="field">
+                    <label>Celular</label>
+                    <input type="text" name="cel" id="cel">
+                </div>
+            </div>
+
+            <div class="ui inverted segment">
+                <h4 class="ui dividing header">Endereço</h4>
+
+                <div class="three fields">
+                    <div class="field">
+                        <label>CEP</label>
+                        <input type="text" name="cep" id="cep">
+                    </div>
+                    <div class="field">
+                        <label>Logradouro</label>
+                        <input type="text" name="logradouro" id="logradouro">
+                    </div>
+                    <div class="field">
+                        <label>Complemento</label>
+                        <input type="text" name="complemento" id="complemento">
+                    </div>
+                </div>
+
+                <div class="three fields">
+                    <div class="field">
+                        <label>Número</label>
+                        <input type="text" name="numero" id="numero">
+                    </div>
+                    <div class="field">
+                        <label>Bairro</label>
+                        <input type="text" name="bairro" id="bairro">
+                    </div>
+                    <div class="field">
+                        <label>Cidade</label>
+                        <input type="text" name="cidade" id="cidade">
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Observações</label>
+                <textarea name="obs" id="obs" rows="5"></textarea>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#cpf').mask('000.000.000-00', {placeholder: "___.___.___-__"})
+        $('#nascimento').mask('00/00/0000', {placeholder: "__/__/____"});
+        $('#fone1, #fone2').mask('(00) 0000-0000', {placeholder: "(__) ____-____"});
+        $('#cel').mask('(00) 00000-0000', {placeholder: "(__) _____-____"});
+        $('#cep').mask('00.000-000', {placeholder: "__.___-___"});
+
+        $('.ui.dropdown').dropdown()
+    })
+</script>
+{% endblock %}

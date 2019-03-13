@@ -27,7 +27,7 @@ def unauthorized_handler():
 
 # =========================================================
 def checkLoginValid(user, password):
-    if user == 'admin' and password == 'root':
+    if (user == 'admin' or user == 'Admin') and password == 'root':
         return True
     else:
         return False
@@ -42,7 +42,7 @@ def home():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        return render_template('login.html')
+        return render_template('login.html', title="Login")
 
     elif request.method == 'POST':
         user = request.form['email']
@@ -55,10 +55,16 @@ def login():
         if checkLoginValid(user, password):
             userToLoad = SessionUser(user)
             login_user(userToLoad)
-            return redirect(url_for('home'))
+            return redirect(url_for('clientes'))
         else:
             flash("Usuário ou senha incorreto")
             return redirect(url_for('login'))
+
+@app.route('/clientes', methods=['GET', 'POST'])
+@login_required
+def clientes():
+    if request.method == 'GET':
+        return render_template('clientes.html', title="Clientes")
 
 @app.route('/logout')
 @login_required
