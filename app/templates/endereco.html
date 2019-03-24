@@ -1,0 +1,75 @@
+<div class="ui inverted segment endereco">
+    <h4 class="ui dividing header">Endereço</h4>
+
+    <div class="three fields">
+        <div class="field">
+            <label>CEP</label>
+            <input type="text" name="cep" id="cep">
+        </div>
+        <div class="field">
+            <label>Logradouro</label>
+            <input type="text" name="logradouro" id="logradouro">
+        </div>
+        <div class="field">
+            <label>Complemento</label>
+            <input type="text" name="complemento" id="complemento">
+        </div>
+    </div>
+
+    <div class="three fields">
+        <div class="field">
+            <label>Número</label>
+            <input type="text" name="numero" id="numero">
+        </div>
+        <div class="field">
+            <label>Bairro</label>
+            <input type="text" name="bairro" id="bairro">
+        </div>
+        <div class="field">
+            <label>Cidade</label>
+            <input type="text" name="cidade" id="cidade">
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#cep').change(carregaEndereco);
+
+    function carregaEndereco() {
+
+        let cep = this.value;
+        cep = cep.replace(/[^0-9]/g, '');
+
+        if (cep.length === 8) {
+
+            $('.segment.endereco').addClass('loading');
+
+            $.getJSON(`https://viacep.com.br/ws/${cep}/json/`, function(data) {
+                let logr        = $('#logradouro');
+                let complemento = $('#complemento');
+                let bairro      = $('#bairro');
+                let cidade      = $('#cidade');
+                // let estado      = $('#estado');
+    
+                logr.val(data.logradouro);
+                complemento.val(data.complemento);
+                bairro.val(data.bairro);
+                cidade.val(data.localidade);
+                // estado.val(data.uf);
+            })
+            .always(function() {
+                $('.segment.endereco').removeClass('loading');
+            });
+        
+        } else {
+
+            $('#cep').val('');
+            $('#logradouro').val('');
+            $('#complemento').val('');
+            $('#bairro').val('');
+            $('#cidade').val('');
+            // $('#estado').val('');
+        }
+
+    }
+</script>
