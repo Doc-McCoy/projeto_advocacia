@@ -14,7 +14,7 @@
 
 {% block content %}
 <div class="one left aligned column wide">
-    <form action="" class="ui form">
+    <form action="clientes" method="POST" class="ui form">
         <div class="ui inverted segment">
 
             <h2 class="ui dividing header">Cadastro de Clientes</h2>
@@ -86,7 +86,7 @@
                 <label>Observações</label>
                 <textarea name="obs" id="obs" rows="5"></textarea>
             </div>
-
+            <button class="ui inverted green button" type="submit" id="save">Salvar</button>
         </div>
     </form>
 </div>
@@ -99,7 +99,12 @@
         $('#cel').mask('(00) 00000-0000', {placeholder: "(__) _____-____"});
         $('#cep').mask('00.000-000', {placeholder: "__.___-___"});
 
+        $('save').click(function() {
+            $(this).addClass('loading')
+        });
+
         $('.ui.dropdown').dropdown()
+        $('#nome').focus();
     })
 </script>
 {% endblock %}

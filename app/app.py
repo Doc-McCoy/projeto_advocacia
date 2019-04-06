@@ -65,6 +65,8 @@ def login():
 def clientes():
     if request.method == 'GET':
         return render_template('clientes.html', title="Clientes")
+    if request.method == 'POST':
+        return "<h1> Salvou! </h1>"
 
 @app.route('/logout')
 @login_required
