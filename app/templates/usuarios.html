@@ -76,18 +76,11 @@
 
 <script>
     $(document).ready(function() {
-        $('#cpf').mask('000.000.000-00', {placeholder: "___.___.___-__"})
-        $('#nascimento').mask('00/00/0000', {placeholder: "__/__/____"});
-        $('#fone1, #fone2').mask('(00) 0000-0000', {placeholder: "(__) ____-____"});
-        $('#cel').mask('(00) 00000-0000', {placeholder: "(__) _____-____"});
-        $('#cep').mask('00.000-000', {placeholder: "__.___-___"});
-
         $('save').click(function() {
             $(this).addClass('loading')
         });
 
-        $('.ui.dropdown').dropdown()
-        $('#nome').focus();
-    })
+        $('#usu_nome').focus();
+    });
 </script>
 {% endblock %}

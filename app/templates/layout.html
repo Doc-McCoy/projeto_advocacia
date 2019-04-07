@@ -13,9 +13,32 @@
 </head>
 <body>
     {% block menu %}{% endblock %}
-    
+
     <div class="ui one column stackable center aligned page grid">
+        {# Mensagens flash, quando houver #}
+        {% block flash %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="ui {{ category }} message">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        {% endblock %}
+
+        {# Conteúdo #}
         {% block content %}{% endblock %}
     </div>
+
+    <script>
+        $(document).ready(function() {
+
+            setTimeout(function() {
+                $('.message').slideUp();
+            }, 5000);
+
+            $('.ui.dropdown').dropdown()
+        });
+    </script>
 </body>
 </html>
