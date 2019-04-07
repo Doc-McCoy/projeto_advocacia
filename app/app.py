@@ -9,7 +9,7 @@ app.config.from_pyfile('config.py')
 
 with app.app_context():
     db.init_app(app)
-    # db.create_all()
+    db.create_all()
 
 # =========================================================
 class SessionUser(UserMixin):

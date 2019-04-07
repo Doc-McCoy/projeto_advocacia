@@ -1,6 +1,4 @@
-FROM python:3.7
-
-EXPOSE 5000
+FROM python:3.7-alpine
 
 WORKDIR /application
 
