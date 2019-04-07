@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required, UserMixin
 from shared.db import db
-from models.user import User
+from models.usuarios import Usuarios
 
 app = Flask(__name__)
 login_manager = LoginManager(app)
@@ -65,6 +65,14 @@ def login():
 def clientes():
     if request.method == 'GET':
         return render_template('clientes.html', title="Clientes")
+    if request.method == 'POST':
+        return "<h1> Salvou! </h1>"
+
+@app.route('/usuarios', methods=['GET', 'POST'])
+@login_required
+def usuarios():
+    if request.method == 'GET':
+        return render_template('usuarios.html', title="Usuários")
     if request.method == 'POST':
         return "<h1> Salvou! </h1>"
 

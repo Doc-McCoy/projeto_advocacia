@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block style %}
+    <style type="text/css">
+        body {
+            background-color : darkslategrey;
+        }
+    </style>
+{% endblock %}
+
+{% block menu %}
+{% include "menu.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="one left aligned column wide">
+    <form action="usuarios" method="POST" class="ui inverted form">
+        <div class="ui inverted segment">
+
+            <h2 class="ui dividing header">Cadastro de Usuários</h2>
+
+            <div class="two fields">
+                <div class="field">
+                    <label>Nome</label>
+                    <div class="ui corner labeled inverted input">
+                        <input type="text" name="usu_nome" id="usu_nome">
+                        <div class="ui red corner label">
+                            <i class="asterisk icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>E-Mail</label>
+                    <div class="ui corner labeled inverted input">
+                        <input type="text" name="usu_email" id="usu_email">
+                        <div class="ui red corner label">
+                            <i class="asterisk icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label>Senha</label>
+                    <div class="ui corner labeled inverted input">
+                        <input type="password" name="usu_senha" id="usu_senha">
+                        <div class="ui red corner label">
+                            <i class="asterisk icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Confirma Senha</label>
+                    <div class="ui corner labeled inverted input">
+                        <input type="password" name="conf-senha" id="conf-senha">
+                        <div class="ui red corner label">
+                            <i class="asterisk icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Departamento</label>
+                <select class="ui dropdown" name="usu_departamento" id="usu_departamento">
+                    <option value="">Selecione</option>
+                    <option value="1">Master</option>
+                    <option value="2">Financeiro</option>
+                    <option value="3">Advogado</option>
+                </select>
+            </div>
+            <button class="ui inverted green button" type="submit" id="save">Salvar</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#cpf').mask('000.000.000-00', {placeholder: "___.___.___-__"})
+        $('#nascimento').mask('00/00/0000', {placeholder: "__/__/____"});
+        $('#fone1, #fone2').mask('(00) 0000-0000', {placeholder: "(__) ____-____"});
+        $('#cel').mask('(00) 00000-0000', {placeholder: "(__) _____-____"});
+        $('#cep').mask('00.000-000', {placeholder: "__.___-___"});
+
+        $('save').click(function() {
+            $(this).addClass('loading')
+        });
+
+        $('.ui.dropdown').dropdown()
+        $('#nome').focus();
+    })
+</script>
+{% endblock %}
