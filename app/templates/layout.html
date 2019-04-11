@@ -20,7 +20,7 @@
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}
-                        <div class="ui {{ category }} message">{{ message }}</div>
+                        <div class="ui {{ category }} message flash">{{ message }}</div>
                     {% endfor %}
                 {% endif %}
             {% endwith %}
@@ -34,7 +34,7 @@
         $(document).ready(function() {
 
             setTimeout(function() {
-                $('.message').slideUp();
+                $('.flash').slideUp();
             }, 5000);
 
             $('.ui.dropdown').dropdown()
