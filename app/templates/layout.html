@@ -15,17 +15,6 @@
     {% block menu %}{% endblock %}
 
     <div class="ui one column stackable center aligned page grid">
-        {# Mensagens flash, quando houver #}
-        {% block flash %}
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="ui {{ category }} message flash">{{ message }}</div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-        {% endblock %}
-
         {# Conteúdo #}
         {% block content %}{% endblock %}
     </div>

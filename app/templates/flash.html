@@ -1,0 +1,10 @@
+{# Mensagens flash, quando houver. Utilizar com o include #}
+{% block flash %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="ui {{ category }} message flash">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+{% endblock %}

@@ -19,17 +19,17 @@ def login_post():
 
     user = Usuarios.query.filter_by(email=email).first()
 
-    """ if not user or not check_password_hash(user.password, password):
+    if not user or not check_password_hash(user.senha, password):
         flash("Usuário e/ou senha inválidos. Verifique.", 'error')
-        return redirect(url_for('auth.login')) """
+        return redirect(url_for('auth.login'))
 
     login_user(user, remember=remember)
 
-    return "LOGOU" #redirect(url_for('main.home'))
+    return redirect(url_for('main.index'))
 
 
 @auth.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('login'))
+    return redirect(url_for('auth.login'))
